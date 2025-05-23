@@ -1,0 +1,43 @@
+name: Godot CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: firebelley/setup-godot@v2
+        with:
+          version: '4.4.stable'
+          export-templates: true
+          use-mono: false
+
+      - name: Run Tests
+        run: |
+          godot --headless --path . -s res://test_runner.gd
+
+      - name: Export Game for Windows
+        run: |
+          mkdir -p build/windows
+          godot --headless --export-release "Windows Desktop" build/windows/game.exe
+          
+      - name: Package Build into ZIP
+        run: |
+          cd build/windows
+          zip -r ../game-windows.zip .
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-windows-build
+          path: build/game-windows.zip

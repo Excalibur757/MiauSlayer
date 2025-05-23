@@ -7,38 +7,33 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Build & Test
+  export-windows:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Godot
-        uses: KoBeWi/setup-godot@v1
-        with:
-          version: 4.4.stable
-          export-templates: true
-
-          use-mono: false
-
-      - name: Run Tests
+      - name: Install Godot
         run: |
-          godot --headless --path . -s res://test_runner.gd
+          mkdir -p godot
+          wget https://downloads.tuxfamily.org/godotengine/4.4/stable/Godot_v4.4-stable_linux_headless.64.zip -O godot/godot.zip
+          unzip godot/godot.zip -d godot
+          chmod +x godot/Godot_v4.4-stable_linux_headless.64
 
-      - name: Export Game for Windows
+      - name: Download export templates
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/4.4/stable/Godot_v4.4-stable_export_templates.tpz -O godot/templates.tpz
+          mkdir -p ~/.local/share/godot/templates/4.4.stable
+          unzip godot/templates.tpz -d ~/.local/share/godot/templates/4.4.stable
+
+      - name: Export game for Windows
         run: |
           mkdir -p build/windows
-          godot --headless --export-release "Windows Desktop" build/windows/game.exe
-          
-      - name: Package Build into ZIP
-        run: |
-          cd build/windows
-          zip -r ../game-windows.zip .
+          ./godot/Godot_v4.4-stable_linux_headless.64 --headless --export-release "Windows Desktop" build/windows/game.exe
 
-      - name: Upload Build Artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: game-windows-build
-          path: build/game-windows.zip
+          name: game-windows
+          path: build/windows/

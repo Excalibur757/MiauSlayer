@@ -2,7 +2,7 @@
 
 ## ✅ Como rodar o jogo
 
-1. Baixe o Godot (versão X.Y.Z).
+1. Baixe o Godot (versão 4.4.2).
 2. Abra o `project.godot`.
 3. Pressione Play ▶ para executar.
 

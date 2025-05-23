@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvs8hemu6ptdu"]
+
+[ext_resource type="Script" uid="uid://qqbyejwbttwd" path="res://codigos/attack.gd" id="1_j51dr"]
+[ext_resource type="Texture2D" uid="uid://cs3org3prapxp" path="res://codigos/3447867527e8bbb.png" id="2_pth7j"]
+[ext_resource type="Texture2D" uid="uid://beoqjvfqdpw4o" path="res://Textures/Sword Slashes/Blue Slash Thin/File2.png" id="2_xr61p"]
+[ext_resource type="Texture2D" uid="uid://8c81kfr1u2hc" path="res://Textures/Sword Slashes/Blue Slash Thin/File3.png" id="3_cgt8q"]
+[ext_resource type="Texture2D" uid="uid://twrh46bgxqv3" path="res://Textures/Sword Slashes/Blue Slash Thin/File4.png" id="4_bpxj4"]
+[ext_resource type="Texture2D" uid="uid://bbmtrv40ngywj" path="res://Textures/Sword Slashes/Blue Slash Thin/File5.png" id="5_gk4c7"]
+[ext_resource type="Texture2D" uid="uid://yjf38luvfeq5" path="res://Textures/Sword Slashes/Blue Slash Thin/File6.png" id="6_5tpfd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68sny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xr61p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cgt8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bpxj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gk4c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5tpfd")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"attack",
+"speed": 25.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63pi1"]
+size = Vector2(1084.93, 6481.51)
+
+[node name="Attack" type="Area2D" groups=["Sword"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_j51dr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -8)
+rotation = -1.49817
+scale = Vector2(-0.144023, -0.153509)
+sprite_frames = SubResource("SpriteFrames_68sny")
+animation = &"attack"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2, -40, 1, -24, 2, 5, 3, 14, 3, 25, 0, 26, -2, 23, -5, -3, -4, -27, 0, -36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.863197, -9.93861)
+rotation = -0.0214387
+scale = Vector2(0.00958333, 0.00958333)
+shape = SubResource("RectangleShape2D_63pi1")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(6, -10)
+scale = Vector2(0.0224932, 0.0272917)
+texture = ExtResource("2_pth7j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

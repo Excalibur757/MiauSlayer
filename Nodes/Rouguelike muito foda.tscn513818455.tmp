@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2om3e07fnjrm"]
+
+[ext_resource type="Texture2D" uid="uid://c7rfmk1t44ce4" path="res://Textures/dirt_full_new.png" id="1_142so"]
+[ext_resource type="Script" uid="uid://bu0f1aj70eglw" path="res://c�digos/player.gd" id="2_eaxea"]
+[ext_resource type="Texture2D" uid="uid://btp1wfrvxyhxa" path="res://Textures/Player/player_sprite.png" id="2_xlhw6"]
+[ext_resource type="PackedScene" uid="uid://l82sodu1sshn" path="res://Nodes/enemy_1.tscn" id="4_aqnfa"]
+[ext_resource type="Script" uid="uid://df76sgacnm0g0" path="res://c�digos/hud.gd" id="5_xabj6"]
+[ext_resource type="Script" uid="uid://bjaq8sj2xbphd" path="res://c�digos/enemy_spawner.gd" id="6_rlrri"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xabj6"]
+
+[node name="world" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(640, 360)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(319.728, 180.17)
+scale = Vector2(0.866772, 0.819272)
+texture = ExtResource("1_142so")
+region_enabled = true
+region_rect = Rect2(-127.75, -79.65, 739, 439)
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+script = ExtResource("2_eaxea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_xabj6")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-2.99998, -4.99999)
+scale = Vector2(1.76602, 1.76155)
+
+[node name="SpawnCenter" type="Marker2D" parent="Player/Camera2D" groups=["SpawnCenter"]]
+position = Vector2(-189.692, -106.724)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_xlhw6")
+flip_h = true
+hframes = 2
+
+[node name="WalkTimer" type="Timer" parent="Player"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="Hud" type="CanvasLayer" parent="."]
+script = ExtResource("5_xabj6")
+
+[node name="TimerLabel" type="Label" parent="Hud"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LifeLabel" type="Label" parent="Hud"]
+offset_left = 262.0
+offset_right = 314.0
+offset_bottom = 23.0
+text = "Vida: 5"
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("6_rlrri")
+enemy_scene = ExtResource("4_aqnfa")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]

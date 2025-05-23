@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvxypcowvb033"
+path="res://.godot/imported/Heavy Day.mp3-c4eea268bd1d6969b4733f814660d43a.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Heavy Day.mp3"
+dest_files=["res://.godot/imported/Heavy Day.mp3-c4eea268bd1d6969b4733f814660d43a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

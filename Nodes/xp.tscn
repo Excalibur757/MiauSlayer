@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://svsbvnm21fwj"]
+
+[ext_resource type="Script" uid="uid://cwp8833l0wc3k" path="res://codigos/xp.gd" id="1_nma5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nubcb"]
+radius = 2.0
+
+[node name="Xp" type="Node2D"]
+script = ExtResource("1_nma5f")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.352651, 0.981694, 1, 1)
+polygon = PackedVector2Array(0, -3, -3, 0, 0, 3, 3, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_nubcb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

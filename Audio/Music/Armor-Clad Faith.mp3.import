@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqr0twftxdvam"
+path="res://.godot/imported/Armor-Clad Faith.mp3-a1c2046b9da3417d5b46ecb856079803.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Armor-Clad Faith.mp3"
+dest_files=["res://.godot/imported/Armor-Clad Faith.mp3-a1c2046b9da3417d5b46ecb856079803.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

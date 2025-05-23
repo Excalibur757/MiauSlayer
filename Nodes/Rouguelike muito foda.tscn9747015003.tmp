@@ -1,0 +1,139 @@
+[gd_scene load_steps=19 format=3 uid="uid://c2om3e07fnjrm"]
+
+[ext_resource type="Texture2D" uid="uid://bvucpvp8ak7jn" path="res://Textures/trees-and-bushes.png" id="1_i7utn"]
+[ext_resource type="PackedScene" uid="uid://dd0gaxmb7n6kl" path="res://Nodes/player_2.tscn" id="1_wrsg2"]
+[ext_resource type="Script" uid="uid://bu0f1aj70eglw" path="res://codigos/player.gd" id="2_eaxea"]
+[ext_resource type="Texture2D" uid="uid://ckslkb6ygb3r0" path="res://Textures/Player/spirte.png" id="3_i7utn"]
+[ext_resource type="PackedScene" uid="uid://l82sodu1sshn" path="res://Nodes/enemy_1.tscn" id="4_aqnfa"]
+[ext_resource type="Script" uid="uid://df76sgacnm0g0" path="res://codigos/hud.gd" id="5_xabj6"]
+[ext_resource type="Script" uid="uid://0rmf0e142e7a" path="res://codigos/hud_player_2.gd" id="6_0bkoy"]
+[ext_resource type="Script" uid="uid://bjaq8sj2xbphd" path="res://codigos/enemy_spawner.gd" id="6_rlrri"]
+[ext_resource type="PackedScene" uid="uid://vq8bvcurgp36" path="res://Nodes/slime.tscn" id="8_la1xq"]
+[ext_resource type="Script" uid="uid://b0bv2ksp4fmhq" path="res://codigos/camera.gd" id="9_2dp51"]
+[ext_resource type="PackedScene" uid="uid://c6njss1liblr6" path="res://Nodes/skelleton.tscn" id="9_imke4"]
+
+[sub_resource type="GDScript" id="GDScript_i7utn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xabj6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxqv7"]
+atlas = ExtResource("3_i7utn")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la1xq"]
+atlas = ExtResource("3_i7utn")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imke4"]
+atlas = ExtResource("3_i7utn")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snmjj"]
+atlas = ExtResource("3_i7utn")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g11gi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxqv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la1xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imke4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snmjj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="world" type="Node2D"]
+script = SubResource("GDScript_i7utn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(640, 360)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(319.728, 180.17)
+scale = Vector2(0.866772, 0.819272)
+texture = ExtResource("1_i7utn")
+region_enabled = true
+region_rect = Rect2(-127.75, -79.65, 739, 439)
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+script = ExtResource("2_eaxea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_xabj6")
+
+[node name="WalkTimer" type="Timer" parent="Player"]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(0, -1)
+scale = Vector2(0.065, 0.07)
+sprite_frames = SubResource("SpriteFrames_g11gi")
+autoplay = "default"
+frame_progress = 0.191332
+
+[node name="Player 2" parent="." instance=ExtResource("1_wrsg2")]
+position = Vector2(188, 0)
+
+[node name="Hud" type="CanvasLayer" parent="."]
+script = ExtResource("5_xabj6")
+
+[node name="TimerLabel" type="Label" parent="Hud"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LifeLabel" type="Label" parent="Hud"]
+offset_left = 262.0
+offset_right = 314.0
+offset_bottom = 23.0
+text = "Vida: 5"
+
+[node name="HUD_Player2" type="CanvasLayer" parent="."]
+script = ExtResource("6_0bkoy")
+
+[node name="TimerLabel" type="Label" parent="HUD_Player2"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LifeLabel2" type="Label" parent="HUD_Player2"]
+offset_left = 322.0
+offset_top = 1.0
+offset_right = 374.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.963644, 0, 0.488961, 1)
+text = "Vida: 5"
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("6_rlrri")
+slime_scene = ExtResource("8_la1xq")
+skelleton_scene = ExtResource("9_imke4")
+default_enemy_scene = ExtResource("4_aqnfa")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+
+[node name="Camera" type="Node2D" parent="."]
+script = ExtResource("9_2dp51")
+
+[node name="Camera2D" type="Camera2D" parent="Camera"]
+position = Vector2(-2.99998, -4.99999)
+scale = Vector2(1.76602, 1.76155)
+
+[node name="SpawnCenter" type="Marker2D" parent="Camera/Camera2D" groups=["SpawnCenter"]]
+position = Vector2(-189.692, -106.724)
+
+[connection signal="health_changed" from="Player" to="Hud" method="_on_player_health_changed"]

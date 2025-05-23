@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pdcajgdynyyn"]
+
+[sub_resource type="Resource" id="Resource_3a1i5"]
+metadata/__load_path__ = "res://codigos/pointer.gd"
+
+[node name="mouse" type="Node2D"]
+script = SubResource("Resource_3a1i5")

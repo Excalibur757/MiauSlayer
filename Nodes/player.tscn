@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpi7vnem77vwb"]
+
+[ext_resource type="Script" uid="uid://bu0f1aj70eglw" path="res://codigos/player.gd" id="1_qlfej"]
+[ext_resource type="Texture2D" uid="uid://j2wuikswjtkk" path="res://Textures/Player/player_sprite.png" id="2_pie2b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_qlfej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hqtel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pie2b")
+hframes = 2

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2om3e07fnjrm"]
+
+[ext_resource type="Texture2D" uid="uid://c7rfmk1t44ce4" path="res://Textures/dirt_full_new.png" id="1_142so"]
+[ext_resource type="Script" uid="uid://bu0f1aj70eglw" path="res://player.gd" id="2_eaxea"]
+[ext_resource type="Texture2D" uid="uid://btp1wfrvxyhxa" path="res://Textures/Player/player_sprite.png" id="2_xlhw6"]
+[ext_resource type="PackedScene" uid="uid://l82sodu1sshn" path="res://enemy 1.tscn" id="4_aqnfa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xabj6"]
+
+[node name="world" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(-2.99998, -4.99999)
+scale = Vector2(1.76602, 1.76155)
+texture = ExtResource("1_142so")
+region_enabled = true
+region_rect = Rect2(-127.75, -79.65, 739, 439)
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+script = ExtResource("2_eaxea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_xabj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_xlhw6")
+hframes = 2
+
+[node name="Enemy" parent="." instance=ExtResource("4_aqnfa")]
+position = Vector2(130, -76)

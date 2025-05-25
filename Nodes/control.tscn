@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://85j3q4ndemyk"]
+
+[ext_resource type="Script" uid="uid://ddjxj4cpushgw" path="res://codigos/control.gd" id="1_0n1a2"]
+[ext_resource type="Texture2D" uid="uid://b0onyo1f8t3xl" path="res://Textures/GUI/cd-311951_640.webp" id="2_nnsr5"]
+[ext_resource type="FontFile" uid="uid://dew5nnapavmlk" path="res://Font/tenderness.otf" id="3_mr7wi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0n1a2"]
+bg_color = Color(0.905882, 0.109804, 0.878431, 0)
+corner_radius_top_right = 4525
+corner_radius_bottom_right = 4735
+shadow_color = Color(0, 0, 0, 0.137255)
+shadow_size = 10
+shadow_offset = Vector2(-1.345, 7.275)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0n1a2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.144
+anchor_bottom = 0.144
+offset_left = 1.0
+offset_top = 13.16
+offset_right = 204.0
+offset_bottom = 35.16
+theme_override_styles/panel = SubResource("StyleBoxFlat_0n1a2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Node2D" type="Node2D" parent="PanelContainer/VBoxContainer"]
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Node2D"]
+offset_left = 167.0
+offset_top = 1.0
+offset_right = 187.0
+offset_bottom = 21.0
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("2_nnsr5")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mr7wi")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

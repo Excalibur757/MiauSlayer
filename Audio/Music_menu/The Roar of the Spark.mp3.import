@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhh2lid0rueu5"
+path="res://.godot/imported/The Roar of the Spark.mp3-d9332ee273b65ced6cf1798c9428b7ce.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music_menu/The Roar of the Spark.mp3"
+dest_files=["res://.godot/imported/The Roar of the Spark.mp3-d9332ee273b65ced6cf1798c9428b7ce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=10.0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=3 uid="uid://06wsd2epbfwo"]
+
+[ext_resource type="Texture2D" uid="uid://djsy40e8e5oa0" path="res://Nodes/pixil-frame-0.png" id="1_gmd22"]
+[ext_resource type="Script" uid="uid://ojiuixvxx8b4" path="res://codigos/game_over.gd" id="1_st14i"]
+[ext_resource type="PackedScene" uid="uid://85j3q4ndemyk" path="res://Nodes/control.tscn" id="2_m7lp4"]
+[ext_resource type="Texture2D" uid="uid://cu4jirqxrl5ub" path="res://codigos/miau.png" id="3_0owfn"]
+[ext_resource type="Script" uid="uid://b4dctv3imsr75" path="res://codigos/control_gameover.gd" id="3_yx7is"]
+[ext_resource type="Texture2D" uid="uid://ckslkb6ygb3r0" path="res://Textures/Player/spirte.png" id="4_ogfmt"]
+[ext_resource type="FontFile" uid="uid://dew5nnapavmlk" path="res://Font/tenderness.otf" id="4_st14i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxqv7"]
+atlas = ExtResource("4_ogfmt")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la1xq"]
+atlas = ExtResource("4_ogfmt")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imke4"]
+atlas = ExtResource("4_ogfmt")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snmjj"]
+atlas = ExtResource("4_ogfmt")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lr60n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxqv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la1xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imke4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snmjj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_st14i")
+
+[node name="Control" parent="." instance=ExtResource("2_m7lp4")]
+script = ExtResource("3_yx7is")
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="."]
+position = Vector2(388, 179)
+scale = Vector2(3.33833, 3.63)
+texture = ExtResource("1_gmd22")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(440, 202)
+scale = Vector2(0.11807, 0.11807)
+texture = ExtResource("3_0owfn")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(52, 300)
+scale = Vector2(0.106263, 0.106263)
+texture = ExtResource("3_0owfn")
+
+[node name="Record" type="Label" parent="."]
+offset_left = 213.0
+offset_top = 100.0
+offset_right = 405.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(1, 0.619608, 0, 1)
+theme_override_fonts/font = ExtResource("4_st14i")
+theme_override_font_sizes/font_size = 20
+text = "Tempo "
+horizontal_alignment = 1
+
+[node name="Record2" type="Label" parent="."]
+offset_left = 213.0
+offset_top = 163.0
+offset_right = 405.0
+offset_bottom = 196.0
+theme_override_colors/font_color = Color(0.247059, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_st14i")
+theme_override_font_sizes/font_size = 20
+text = "Tempo "
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 195.0
+offset_top = 39.0
+offset_right = 438.0
+offset_bottom = 90.0
+theme_override_colors/font_shadow_color = Color(0.247059, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_st14i")
+theme_override_font_sizes/font_size = 50
+text = "GAMEOVER"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 498.0
+offset_top = 100.0
+offset_right = 637.0
+offset_bottom = 166.0
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Jogar de Novo
+"
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Menu Principal"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sair"
+
+[node name="AnimatedSprite2D_reserva" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, 300)
+scale = Vector2(0.0985, 0.103)
+sprite_frames = SubResource("SpriteFrames_lr60n")
+autoplay = "default"
+frame_progress = 0.877324
+
+[node name="AnimatedSprite2D_reserva" type="AnimatedSprite2D" parent="AnimatedSprite2D_reserva"]
+position = Vector2(3949.24, -951.456)
+scale = Vector2(1.11068, 1.16142)
+sprite_frames = SubResource("SpriteFrames_lr60n")
+autoplay = "default"
+frame_progress = 0.267198
+flip_h = true
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

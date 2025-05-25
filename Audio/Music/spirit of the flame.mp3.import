@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4mqv25cg7jfg"
+path="res://.godot/imported/spirit of the flame.mp3-81d99574e6036b8d95aa312efc943007.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/spirit of the flame.mp3"
+dest_files=["res://.godot/imported/spirit of the flame.mp3-81d99574e6036b8d95aa312efc943007.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

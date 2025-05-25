@@ -1,0 +1,43 @@
+# Godot-specific folders
+.godot/
+.import/
+
+# Exported builds
+export/
+*.exe
+*.apk
+*.zip
+*.x86_64
+*.pck
+*.dmg
+*.tar.gz
+*.app
+
+# Temporary scene files
+*.tscn.temp
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# User config files
+*.cfg
+*.log
+
+# IDE/editor specific
+.vscode/
+.idea/
+
+# Python cache (caso use scripts ou ferramentas em Python)
+__pycache__/
+*.pyc
+*.pyo
+
+# Mac OS Finder metadata
+*.DS_Store
+
+# Windows hidden files
+ehthumbs.db
+Icon?
